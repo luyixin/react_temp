@@ -11,35 +11,54 @@ import {
 import renderRoutes from './routerRegister';
 import LoadableComponent from '../utils/LoadableComponent';
 
-const routes = [
+interface IRoute {
+  path: string,
+  id: string,
+  authorize?: boolean | false,
+  component?: any,
+  children?: IRoute[],
+}
+
+const routes: IRoute[] = [
   // 嵌套路由，当访问子节点路径时，该节点路径上，所有父级将被渲染，请合理利用。
   // 如不需要渲染父级，请使用非嵌套路由。
   // 嵌套路由的path 和 key字段，请带上父级的path拼接。
+  // authorize: 当前页面是否需要鉴权
   {
     path: '/',
-    key: 'app',
-    redirect: '/test',
+    id: 'app',
     component: LoadableComponent(() => import('../App')),
     children: [
       // 非嵌套路由
       {
         path: '/test',
-        key: '/test',
+        id: 'test',
+        authorize: true,
         component: LoadableComponent(() => import('../views/Test')),
       },
       {
+        path: '/403',
+        id: '403',
+        component: LoadableComponent(() => import('../views/Common/NoAuthorize')),
+      },
+      {
+        path: '/404',
+        id: '404',
+        component: LoadableComponent(() => import('../views/Common/CannotFind')),
+      },
+      {
         path: '/login',
-        key: '/login',
-        component: LoadableComponent(() => import('../views/Login')),
+        id: 'login',
+        component: LoadableComponent(() => import('../views/Common/Login')),
       },
       {
         path: '/layout',
-        key: '/layout',
-        component: LoadableComponent(() => import('../views/LayoutView')),
+        id: 'layout',
+        component: LoadableComponent(() => import('../views/Common/LayoutView')),
         children: [
           {
             path: '/layout/about',
-            key: '/layout/about',
+            id: 'about',
             component: LoadableComponent(() => import('../views/About')),
           },
         ],

@@ -11,27 +11,27 @@ interface IMunes {
 }
 
 // 测试菜单权限字符串, 后期要挪位置，暂时放这里。
-export const purview = 'home1,home3';
+export const authorize = 'about,login';
 
 // 以下全为配置测试配置项
 export const layoutMenus = [
   {
-    title: '菜单1', // 菜单标题
-    id: 'home1', // 菜单ID，后期配合权限做左侧菜单控制
+    title: 'layout', // 菜单标题
+    id: 'layout', // 菜单ID，后期配合权限做左侧菜单控制
     icon: 'user', // 菜单左侧图标，可配置项，参考：https://ant.design/components/icon-cn/
     children: [
       {
-        title: '菜单2',
-        id: 'home2',
-        url: '/test',
-        icon: 'user',
-      },
-      {
-        title: '登录',
-        id: 'home3',
-        url: '/login',
+        title: 'about',
+        id: 'about',
+        url: '/layout/about',
         icon: 'user',
       },
     ],
+  },
+  {
+    title: 'login',
+    id: 'login',
+    url: '/login',
+    icon: 'user',
   },
 ];

@@ -11,7 +11,8 @@ import {
 
 interface IRoute {
   path: string,
-  key: string,
+  id: string,
+  authorize?: boolean | false,
   component?: any,
   children?: IRoute[],
 }
@@ -20,21 +21,27 @@ const renderRoutes = (routes: IRoute[]): any => (routes ? (
   routes.map((route: IRoute) => {
     const {
       path,
-      key,
+      id,
+      authorize,
       children,
     } = route;
 
     return (
       <Route
         path={path}
-        key={key}
-        render={(props: any) => (
-          children && children.length ? (
-            <route.component router={props}>
-              {renderRoutes(children)}
-            </route.component>
-          ) : <route.component router={props} />
-        )}
+        key={id}
+        render={(props: any) => {
+          const { location } = props;
+          location.id = id;
+          location.authorize = authorize || false;
+          return (
+            children && children.length ? (
+              <route.component router={props}>
+                {renderRoutes(children)}
+              </route.component>
+            ) : <route.component router={props} />
+          );
+        }}
       />
     );
   })

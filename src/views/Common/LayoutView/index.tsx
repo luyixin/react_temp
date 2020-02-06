@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
-import { layoutMenus, purview } from '../../config/layoutMenus';
+import { layoutMenus, authorize } from '../../../config/layoutMenus';
 import './index.less';
 
 // purview 测试，为的后端返回的权限字符串
@@ -48,7 +48,7 @@ export default class LayoutView extends Component<IProps, IState> {
         {this.renderMenus(a.children)}
       </Menu.SubMenu>
     ) : (
-      purview.includes(a.id) && (
+      authorize.includes(a.id) && (
         <Menu.Item key={a.id} onClick={() => this.menuItemClick(a.url)}>
           {a.icon ? <Icon type={a.icon} /> : null}
           <span>{a.title}</span>
