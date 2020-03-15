@@ -81,6 +81,10 @@ yarn run build:prod
 输出在build目录，build目录内所有内容请打包到服务器发版
 
 ### 需要注意的地方
+* 在Windows下默认的换行符是CRLF，那么我们需要保证在文件提交到版本库的时候文件的换行符是LF，添加：git config --global core.autocrlf false即可，关闭自动替换，可以在Git文件系统的根目录的".gitconfig"中看到相关配置。linux上的文件系统，使用crlf ，会出大麻烦。weindows执行以下命令行，然后重新拉取项目代码。
+```
+git config --global core.autocrlf false
+```
 * 前端同学尽量少的去嵌套react组件或者dom组件的层级，避免嵌套地域。
 * 目前css 样式，不支持组件css样式私有，有考察过css.module等方案，个人觉得太重，特推荐大家写样式必须命名class，且页面的组件请使用page前缀，例如： `<div className="page-xxx-xxx">页面组件</div>`。自定义组件请使用com前缀，例如： `<div className="com-xxx-xxx">自定义组件</div>`。
 * 在代码中，无状态组件再使用函数组件，有状态的组件，用class的方式完成，禁止在函数组件内使用useState等钩子函数，这样不利于可读性。eslint 中的 airbnb 规范会做强制约束。

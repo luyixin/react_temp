@@ -11,7 +11,7 @@ interface IMunes {
 }
 
 // 测试菜单权限字符串, 后期要挪位置，暂时放这里。
-export const authorize = 'about,login';
+export const authorize = 'login';
 
 // 以下全为配置测试配置项
 export const layoutMenus = [
@@ -21,9 +21,9 @@ export const layoutMenus = [
     icon: 'user', // 菜单左侧图标，可配置项，参考：https://ant.design/components/icon-cn/
     children: [
       {
-        title: 'about',
-        id: 'about',
-        url: '/layout/about',
+        title: 'home',
+        id: 'home',
+        url: '/layout/home',
         icon: 'user',
       },
     ],

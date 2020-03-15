@@ -14,12 +14,12 @@ import LoadableComponent from '../utils/LoadableComponent';
 interface IRoute {
   path: string,
   id: string,
-  authorize?: boolean | false,
+  authorize?: boolean,
   component?: any,
   children?: IRoute[],
 }
 
-const routes: IRoute[] = [
+export const routes: IRoute[] = [
   // 嵌套路由，当访问子节点路径时，该节点路径上，所有父级将被渲染，请合理利用。
   // 如不需要渲染父级，请使用非嵌套路由。
   // 嵌套路由的path 和 key字段，请带上父级的path拼接。
@@ -30,12 +30,6 @@ const routes: IRoute[] = [
     component: LoadableComponent(() => import('../App')),
     children: [
       // 非嵌套路由
-      {
-        path: '/test',
-        id: 'test',
-        authorize: true,
-        component: LoadableComponent(() => import('../views/Test')),
-      },
       {
         path: '/403',
         id: '403',
@@ -57,9 +51,10 @@ const routes: IRoute[] = [
         component: LoadableComponent(() => import('../views/Common/LayoutView')),
         children: [
           {
-            path: '/layout/about',
-            id: 'about',
-            component: LoadableComponent(() => import('../views/About')),
+            path: '/layout/home',
+            authorize: true,
+            id: 'home',
+            component: LoadableComponent(() => import('../views/Home')),
           },
         ],
       },

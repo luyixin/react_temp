@@ -51,6 +51,7 @@
     ],
     "rules": {
       "no-console": 0,
+      "max-len": 0,
       "react/jsx-filename-extension": [
         1,
         {
@@ -64,7 +65,8 @@
       ],
       "react/state-in-constructor": 0,
       "react/jsx-props-no-spreading": 0,
-      "@typescript-eslint/no-unused-expressions": 0
+      "@typescript-eslint/no-unused-expressions": 0,
+      "@typescript-eslint/no-unused-vars": 1
     },
     "settings": {
       "import/resolver": {

@@ -3,7 +3,7 @@ import Loadable from 'react-loadable';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
-class LoadingPage extends Component {
+class LoadingPage extends Component<any, any> {
   // 类似github页面加载的那个加载条
   componentDidMount() {
     NProgress.start();
