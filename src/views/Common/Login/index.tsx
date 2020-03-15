@@ -8,6 +8,11 @@ type IProps = {
 export default class Login extends Component<IProps> {
   state = {};
 
+  test = () => {
+    const { router: { history } } = this.props;
+    history.push('/layout/home');
+  };
+
   render() {
     const { children } = this.props;
     return (
@@ -16,6 +21,7 @@ export default class Login extends Component<IProps> {
         <div>
           {children}
         </div>
+        <button onClick={this.test} type="button">跳转</button>
       </div>
     );
   }

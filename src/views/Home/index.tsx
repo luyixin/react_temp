@@ -7,13 +7,13 @@ type IProps = {
   children?: any[]
 };
 
-export default class About extends Component<IProps> {
+export default class Home extends Component<IProps> {
   state = {}
 
   render () {
     return (
       <div>
-        <div>about</div>
+        <div>home</div>
       </div>
     )
   }

@@ -9,7 +9,6 @@
 */
 
 import React, { Component } from 'react';
-import utils from './utils';
 import './assets/styles/common.less';
 
 type IState = {
@@ -23,13 +22,6 @@ type IProps = {
 
 export default class App extends Component<IProps, IState> {
   state = {};
-
-  componentDidMount() {
-    const { router: { history, location } } = this.props;
-    utils.routerPurview(history, location);
-    // 监听路由变化
-    history.listen((route: any) => utils.routerPurview(history, route));
-  }
 
   toLink = (path: string) => {
     const { router: { history } } = this.props;
