@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu } from 'antd';
 import { layoutMenus, authorize } from '../../../config/layoutMenus';
 import './index.less';
 
 // purview 测试，为的后端返回的权限字符串
 const { Header, Sider, Content } = Layout;
 
-type IState = {
-  collapsed: boolean
-};
+type IState = {};
 
 type IProps = {
   history: any,
@@ -17,17 +15,7 @@ type IProps = {
 };
 
 export default class LayoutView extends Component<IProps, IState> {
-  state = {
-    collapsed: false,
-  };
-
-  toggle = () => {
-    const { collapsed } = this.state;
-
-    this.setState({
-      collapsed: !collapsed,
-    });
-  };
+  state = {};
 
   menuItemClick = (url: string) => {
     const { router: { history: { push } } } = this.props;
@@ -40,8 +28,8 @@ export default class LayoutView extends Component<IProps, IState> {
         key={a.id}
         title={(
           <span>
-            {a.icon ? <Icon type={a.icon} /> : null}
-            <span>{a.title}</span>
+            { a.icon || null }
+            <span className="both-title">{a.title}</span>
           </span>
         )}
       >
@@ -50,35 +38,32 @@ export default class LayoutView extends Component<IProps, IState> {
     ) : (
       authorize.includes(a.id) && (
         <Menu.Item key={a.id} onClick={() => this.menuItemClick(a.url)}>
-          {a.icon ? <Icon type={a.icon} /> : null}
-          <span>{a.title}</span>
+          { a.icon || null }
+          <span className="link-title">{a.title}</span>
         </Menu.Item>
       )
     )
   ));
 
   render() {
-    const { collapsed } = this.state;
     const { children } = this.props;
     return (
-      <Layout style={{ width: '100vw', height: '100vh' }}>
-        <Sider className="page-layout-sider" trigger={null} collapsible collapsed={collapsed}>
-          <div className="page-layout-logo" />
-          <Menu theme="dark" mode="inline">
-            {this.renderMenus(layoutMenus)}
-          </Menu>
-        </Sider>
+      <Layout className="page-layout">
+        <Header className="layout-header">
+          <div className="page-layout-logo">今状元ERP系统</div>
+          <div className="header-content">123</div>
+        </Header>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
-            <Icon
-              className="page-layout-trigger"
-              type={collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
-          </Header>
-          <Content className="page-layout-content">
-            {children}
-          </Content>
+          <Sider width={240} className="layout-sider">
+            <Menu mode="inline" className="menu-list">
+              {this.renderMenus(layoutMenus)}
+            </Menu>
+          </Sider>
+          <Layout>
+            <Content className="page-layout-content">
+              {children}
+            </Content>
+          </Layout>
         </Layout>
       </Layout>
     );

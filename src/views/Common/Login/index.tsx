@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import './index.less';
 
 type IProps = {
   router: any,
-  children?: any[]
 };
 
 export default class Login extends Component<IProps> {
@@ -14,14 +14,12 @@ export default class Login extends Component<IProps> {
   };
 
   render() {
-    const { children } = this.props;
     return (
-      <div>
-        <div>login</div>
-        <div>
-          {children}
+      <div className="page-login">
+        <div className="content">
+          <div className="title">今状元管理系统</div>
+
         </div>
-        <button onClick={this.test} type="button">跳转</button>
       </div>
     );
   }

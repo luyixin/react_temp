@@ -7,6 +7,7 @@
 import React from 'react';
 import {
   Route,
+  Redirect,
 } from 'react-router-dom';
 import { findExistenceViews, noPermission } from '../utils';
 
@@ -32,9 +33,9 @@ const renderRoutes = (routes: IRoute[]): any => (routes ? (
         path={path}
         key={id}
         render={(props: any) => {
-          const { history, location } = props;
-          if (!findExistenceViews(routes, location.pathname)) return history.replace('/404');
-          if (noPermission(id, authorize)) return history.replace('/403');
+          const { location } = props;
+          if (!findExistenceViews(routes, location.pathname)) return <Redirect to="/404" />;
+          if (noPermission(id, authorize)) return <Redirect to="/403" />;
 
           return (
             children && children.length ? (

@@ -23,9 +23,15 @@ type IProps = {
 export default class App extends Component<IProps, IState> {
   state = {};
 
+  componentDidMount() {
+    console.log('link');
+    this.toLink('/layout/home');
+  }
+
   toLink = (path: string) => {
-    const { router: { history } } = this.props;
-    history.push(path);
+    const { router: { history, location } } = this.props;
+
+    location.pathname === '/' && history.push(path);
   };
 
   render() {

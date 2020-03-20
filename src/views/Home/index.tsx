@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Button } from 'antd';
 /* eslint-disable */
 
 type IProps = {
@@ -14,6 +14,9 @@ export default class Home extends Component<IProps> {
     return (
       <div>
         <div>home</div>
+        <Button type="primary">
+          按钮
+        </Button>
       </div>
     )
   }
